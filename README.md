@@ -5,3 +5,4 @@
 |------|---|---|---|---|
 |0801|X|X|X|[사칙연산](https://school.programmers.co.kr/learn/courses/30/lessons/1843)|
 |0802|X|X|O|[등굣길](https://school.programmers.co.kr/learn/courses/30/lessons/42898)|
+|0803|X|X|O|[네트워크](https://school.programmers.co.kr/learn/courses/30/lessons/43162)|
