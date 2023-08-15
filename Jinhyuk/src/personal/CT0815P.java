@@ -1,4 +1,6 @@
-public class Personal {
+package personal;
+
+public class CT0815P {
 }
 
 // 폰켓몬

@@ -1,4 +1,6 @@
-public class Member {
+package member;
+
+public class CT0815M {
     public static void main(String[] args) {
         System.out.println("Hello world!");
     }
