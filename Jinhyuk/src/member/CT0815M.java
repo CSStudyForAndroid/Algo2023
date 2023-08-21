@@ -1,10 +1,10 @@
 package member;
 
-public class CT0815M {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-    }
-}
+//public class CT0815M {
+//    public static void main(String[] args) {
+//        System.out.println("Hello world!");
+//    }
+//}
 
 // 야근 지수
 //class Solution {
