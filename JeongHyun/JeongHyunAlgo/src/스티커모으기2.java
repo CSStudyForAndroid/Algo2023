@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 스티커모으기2 {
     public int solution(int sticker[]) {
         // 첫번째 스티커를 떼는 방법과 안 떼는 방법으로 나눔!
         int answer = 0;
