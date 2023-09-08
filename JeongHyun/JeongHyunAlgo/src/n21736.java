@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class n21736 {
+public class n21736 { // dfs
     static int[][] visited;
     static int answer = 0;
     //static int[] x_move = {1, 0, -1, 0};
