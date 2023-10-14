@@ -3,7 +3,10 @@ package personal;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.Buffer;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 public class CT1012P {
@@ -20,10 +23,95 @@ public class CT1012P {
 //        String str = br.readLine();
 //        Solution temp = new Solution();
 //        System.out.println(temp.solution(str));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str = br.readLine();
+        int mapSize = Integer.parseInt(str);
+        str = br.readLine();
+        int appleCount = Integer.parseInt(str);
+        int[][] appleLocation = new int[appleCount][2];
+        StringTokenizer st;
+        for (int i = 0; i < appleCount; i++) {
+            str = br.readLine();
+            st = new StringTokenizer(str, " ");
+            appleLocation[i][0] = Integer.parseInt(st.nextToken());
+            appleLocation[i][1] = Integer.parseInt(st.nextToken());
+        }
+        str = br.readLine();
+        int transitionCount = Integer.parseInt(str);
+        String[][] transition = new String[transitionCount][2];
+        for (int i = 0; i < transitionCount; i++) {
+            str = br.readLine();
+            st = new StringTokenizer(str, " ");
+            transition[i][0] = st.nextToken();
+            transition[i][1] = st.nextToken();
+        }
+
+        Solution temp = new Solution();
+        System.out.println(temp.solution(mapSize, appleLocation, transition));
     }
 }
 
-//class Solution {
+class Solution {
+    int[] dx = {0, 1, 0, -1};
+    int[] dy = {1, 0, -1, 0};
+
+    public int solution(int mapSize, int[][] appleLocation, String[][] transition) {
+        int count = 0;
+        int direct = 0;
+        LinkedList<int[]> loc = new LinkedList<>();
+        loc.addLast(new int[]{1, 1});
+        while (true) {
+            count++;
+            direct = checkDirect(count, direct, transition);
+            int nextX = loc.getLast()[0] + dx[direct];
+            int nextY = loc.getLast()[1] + dy[direct];
+
+            if (checkFinish(nextX, nextY, mapSize, loc)) return count;
+
+            if (checkApple(nextX, nextY, appleLocation)) {
+                loc.addLast(new int[]{nextX, nextY});
+            } else {
+                loc.addLast(new int[]{nextX, nextY});
+                loc.removeFirst();
+            }
+        }
+    }
+
+    int checkDirect(int count, int direct, String[][] transition) {
+        for (int i = 0; i < transition.length; i++) {
+            if (Integer.parseInt(transition[i][0]) == count) {
+                if (transition[i][1].equals("D")) { // 오른쪽
+                    if (direct + 1 >= 4) return 0;
+                    return direct + 1;
+                } else {
+                    if (direct - 1 < 0) return 3;
+                    return direct - 1;
+                }
+            }
+        }
+        return direct;
+    }
+
+    Boolean checkFinish(int nextX, int nextY, int mapSize, LinkedList<int[]> loc) {
+        if (nextX < 1 || nextX > mapSize || nextY < 1 || nextY > mapSize) {
+            return true;
+        }
+        for (int[] i : loc) {
+            if (nextX == i[0] && nextY == i[1]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    Boolean checkApple(int nextX, int nextY, int[][] appleLocation) {
+        for (int[] i : appleLocation) {
+            if (nextX == i[0] && nextY == i[1]) return true;
+        }
+        return false;
+    }
+
+    //class Solution {
 //    public int[][] rotate(int[][] a) {
 //        int n = a.length;
 //        int m = a[0].length;
@@ -85,7 +173,6 @@ public class CT1012P {
 //    }
 //}
 
-class Solution {
 
 //    public int solution(String str) {
 //        int shortestStr = str.length();
