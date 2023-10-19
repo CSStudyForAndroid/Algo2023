@@ -3,11 +3,11 @@ package personal;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-public class CT1014P {
-    public static void main(String[] args) {
-
-    }
-}
+//public class CT1014P {
+//    public static void main(String[] args) {
+//
+//    }
+//}
 
 
 //class Solution {
