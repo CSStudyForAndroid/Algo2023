@@ -5,90 +5,101 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class CT1102P {
-    public static void main(String[] args) throws IOException {
+//public class CT1102P {
+//    public static void main(String[] args) throws IOException {
+////        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+////        String str = br.readLine();
+////        StringTokenizer st = new StringTokenizer(str, " ");
+////        int size = Integer.valueOf(st.nextToken());
+////        int routeSize = Integer.valueOf(st.nextToken());
+////        int[][] list = new int[size][size];
+////        for (int i = 0; i < size; i++) {
+////            str = br.readLine();
+////            st = new StringTokenizer(str, " ");
+////            for (int j = 0; j < size; j++) {
+////                list[i][j] = Integer.valueOf(st.nextToken());
+////            }
+////        }
+////
+////        int[] route = new int[routeSize];
+////        str = br.readLine();
+////        st = new StringTokenizer(str, " ");
+////        for (int i = 0; i < routeSize; i++) {
+////            route[i] = Integer.valueOf(st.nextToken());
+////        }
+////        Solution temp = new Solution();
+////        System.out.println(temp.solution(list, route));
+////        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+////        String str = br.readLine();
+////        int airport = Integer.valueOf(str);
+////        int airplaneCount = Integer.valueOf(br.readLine());
+////        int[] targetAirport = new int[airplaneCount];
+////        for (int i = 0; i < airplaneCount; i++) {
+////            targetAirport[i] = Integer.valueOf(br.readLine());
+////        }
+////
+////        Solution temp = new Solution();
+////        System.out.println(temp.solution(targetAirport, airport));
 //        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //        String str = br.readLine();
 //        StringTokenizer st = new StringTokenizer(str, " ");
 //        int size = Integer.valueOf(st.nextToken());
-//        int routeSize = Integer.valueOf(st.nextToken());
-//        int[][] list = new int[size][size];
+//        int limit = Integer.valueOf(st.nextToken());
+//
+//        int[] list = new int[size];
+//        st = new StringTokenizer(br.readLine(), " ");
 //        for (int i = 0; i < size; i++) {
-//            str = br.readLine();
-//            st = new StringTokenizer(str, " ");
-//            for (int j = 0; j < size; j++) {
-//                list[i][j] = Integer.valueOf(st.nextToken());
+//            list[i] = Integer.valueOf(st.nextToken());
+//        }
+//        Solution temp = new Solution();
+//        System.out.println(temp.solution(list, limit));
+//
+//
+//        LinkedList<int[]> list = new LinkedList<>();
+//        for(int i = 0; i <= n; i++){
+//            for(int j = 0; j <= n; j++){
+//                if(map[i][j]!=-1) list.add(new int[]{i,j,map[i][j]});
 //            }
 //        }
 //
-//        int[] route = new int[routeSize];
-//        str = br.readLine();
-//        st = new StringTokenizer(str, " ");
-//        for (int i = 0; i < routeSize; i++) {
-//            route[i] = Integer.valueOf(st.nextToken());
-//        }
-//        Solution temp = new Solution();
-//        System.out.println(temp.solution(list, route));
-//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//        String str = br.readLine();
-//        int airport = Integer.valueOf(str);
-//        int airplaneCount = Integer.valueOf(br.readLine());
-//        int[] targetAirport = new int[airplaneCount];
-//        for (int i = 0; i < airplaneCount; i++) {
-//            targetAirport[i] = Integer.valueOf(br.readLine());
+//    }
+//
+//}
+
+//class Solution {
+//
+//
+//    public long solution(int[] list, long time) {
+//        PriorityQueue<int[]> q = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+//        for (int i = 0; i < list.length; i++) {
+//            int[] temp = new int[2];
+//            temp[0] = list[i];
+//            temp[1] = i + 1;
+//            q.add(temp);
 //        }
 //
-//        Solution temp = new Solution();
-//        System.out.println(temp.solution(targetAirport, airport));
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String str = br.readLine();
-        StringTokenizer st = new StringTokenizer(str, " ");
-        int size = Integer.valueOf(st.nextToken());
-        int limit = Integer.valueOf(st.nextToken());
-
-        int[] list = new int[size];
-        st = new StringTokenizer(br.readLine(), " ");
-        for (int i = 0; i < size; i++) {
-            list[i] = Integer.valueOf(st.nextToken());
-        }
-        Solution temp = new Solution();
-        System.out.println(temp.solution(list, limit));
-    }
-}
-
-class Solution {
-
-    public long solution(int[] list, long time) {
-        PriorityQueue<int[]> q = new PriorityQueue<>((a, b) -> a[0] - b[0]);
-        for (int i = 0; i < list.length; i++) {
-            int[] temp = new int[2];
-            temp[0] = list[i];
-            temp[1] = i + 1;
-            q.add(temp);
-        }
-
-        int minus = 0;
-        while ((q.peek()[0]- minus) * q.size() <= time) {
-            int[] temp = q.poll();
-            time -= (temp[0] - minus) * (q.size() + 1);
-            minus += (temp[0] - minus) * (q.size() + 1);
-        }
-
-        q = new PriorityQueue<int[]>((a, b) -> a[1] - b[1]);
-
-        for (long i = 0; i < time; i++) {
-            int[] temp = q.poll();
-            if (temp[0] == 0) {
-                i--;
-                continue;
-            }
-            temp[0]--;
-            if (temp[0] > 0) q.add(temp);
-            if (q.size() == 0) return -1;
-        }
-        if (q.size() > 0) return q.poll()[1];
-        return -1;
-    }
+//        int minus = 0;
+//        while ((q.peek()[0]- minus) * q.size() <= time) {
+//            int[] temp = q.poll();
+//            time -= (temp[0] - minus) * (q.size() + 1);
+//            minus += (temp[0] - minus) * (q.size() + 1);
+//        }
+//
+//        q = new PriorityQueue<int[]>((a, b) -> a[1] - b[1]);
+//
+//        for (long i = 0; i < time; i++) {
+//            int[] temp = q.poll();
+//            if (temp[0] == 0) {
+//                i--;
+//                continue;
+//            }
+//            temp[0]--;
+//            if (temp[0] > 0) q.add(temp);
+//            if (q.size() == 0) return -1;
+//        }
+//        if (q.size() > 0) return q.poll()[1];
+//        return -1;
+//    }
 
 //    int solution(int[] list, int limit) {
 ////        int count = 0 ;
@@ -184,5 +195,4 @@ class Solution {
 //
 //        return "YES";
 //    }
-
-}
+//}
