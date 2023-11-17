@@ -1,3 +1,5 @@
+package etc;
+
 import java.util.*;
 
 class 불량사용자 {
