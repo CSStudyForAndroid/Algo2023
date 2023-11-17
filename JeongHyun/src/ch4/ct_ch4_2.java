@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ct_ch4_2 {
-    public static void main(String[] args) throws IOException {
+    /*public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String str = br.readLine();
 
@@ -24,5 +24,28 @@ public class ct_ch4_2 {
         }
 
         System.out.println(result);
+    }*/
+
+    public static void main(String[] args) throws IOException {
+        /*
+        8가지에 대한 정보 저장해놓기
+        이동시켜보기
+         */
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] str = br.readLine().split("");
+
+        int[] arr_x = {2, 2, -2, -2, 1, 1, -1, -1};
+        int[] arr_y = {1,-1, 1, -1, 2, -2, 2, -2};
+
+        int x = str[0].charAt(0) - 'a' + 1;
+        int y = Integer.parseInt(str[1]);
+
+        int result = 0;
+        for (int i = 0; i < 8; i++) {
+            if (x + arr_x[i] >= 1 && x + arr_x[i] <= 8 && y + arr_y[i] >= 1 && y + arr_y[i] <= 8)
+                result++;
+        }
+        System.out.println(result);
+
     }
 }
