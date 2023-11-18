@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class ct_ch6_3 {
-    public static void main(String[] args) throws IOException {
+    /*public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         HashMap<String, Integer> map = new HashMap<>();
@@ -22,6 +22,30 @@ public class ct_ch6_3 {
 
         for(String str: list){
             System.out.print(str + " ");
+        }
+    }*/
+
+    public static void main(String[] args) throws IOException {
+        /*
+        학생 이름, 성적 -> 성적 낮은 순으로 학생 이름 출력
+         */
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int n = Integer.parseInt(st.nextToken());
+
+        HashMap<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            map.put(st.nextToken(), Integer.parseInt(st.nextToken()));
+        }
+
+        // 성적 낮은 순 정렬
+        List<String> list = new ArrayList<>(map.keySet());
+        Collections.sort(list);
+
+        for (String s : list) {
+            System.out.print(s + " ");
         }
     }
 }
