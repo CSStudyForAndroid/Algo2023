@@ -1,0 +1,120 @@
+package personal;
+
+import java.io.*;
+import java.util.*;
+
+public class CT1223P {
+
+    static int checkArr[];
+    static int myArr[];
+    static int checkSecret;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        int dnaLength = Integer.parseInt(st.nextToken());
+        int partLength = Integer.parseInt(st.nextToken());
+        char[] dna = br.readLine().toCharArray();
+        st = new StringTokenizer(br.readLine(), " ");
+        checkArr = new int[4];
+        myArr = new int[4];
+        for(int i = 0 ; i < 4; i++){
+            checkArr[i] = Integer.parseInt(st.nextToken());
+            if(checkArr[i] == 0) checkSecret++;
+        }
+        int count = 0;
+
+        for(int i = 0 ; i < partLength; i++){
+            Add(dna[i]);
+        }
+
+        if(checkSecret == 4){
+            count++;
+        }
+
+        for(int endIdx = partLength ; endIdx < dnaLength; endIdx++){
+            int startIdx = endIdx - partLength;
+            Add(dna[endIdx]);
+            Remove(dna[startIdx]);
+            if(checkSecret == 4){
+                count++;
+            }
+        }
+
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        bw.write(count+"");
+        bw.flush();
+        bw.close();
+    }
+
+    private static void Add(char c){
+        if(c == 'A'){
+            myArr[0]++;
+            if(myArr[0] == checkArr[0]) checkSecret++;
+        }else if(c == 'C'){
+            myArr[1]++;
+            if(myArr[1] == checkArr[1]) checkSecret++;
+        }else if(c == 'G'){
+            myArr[2]++;
+            if(myArr[2] == checkArr[2]) checkSecret++;
+        }else{
+            myArr[3]++;
+            if(myArr[3] == checkArr[3]) checkSecret++;
+        }
+    }
+
+    private static void Remove(char c){
+        if(c == 'A'){
+            if(myArr[0] == checkArr[0]) checkSecret--;
+            myArr[0]--;
+        }else if(c == 'C'){
+            if(myArr[1] == checkArr[1]) checkSecret--;
+            myArr[1]--;
+        }else if(c == 'G'){
+            if(myArr[2] == checkArr[2]) checkSecret--;
+            myArr[2]--;
+        }else{
+            if(myArr[3] == checkArr[3]) checkSecret--;
+            myArr[3]--;
+        }
+    }
+//    public static void main(String[] args) throws IOException {
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        int numCount = Integer.parseInt(br.readLine());
+//        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+//        int[] array = new int[numCount];
+//        for (int i = 0; i < numCount; i++) {
+//            array[i] = Integer.parseInt(st.nextToken());
+//        }
+//        Arrays.sort(array);
+//
+//        int goodNumCount = 0;
+//        for (int i = 0; i < numCount; i++) {
+//            int startIdx = 0;
+//            int endIdx = numCount - 1;
+//            while (startIdx < endIdx) {
+//                int sum = array[startIdx] + array[endIdx];
+//
+//                if (sum == array[i]) {
+//                    if (startIdx != i && endIdx != i) {
+//                        goodNumCount++;
+//                        break;
+//                    }else if(startIdx == i){
+//                        startIdx++;
+//                    }else{
+//                        endIdx--;
+//                    }
+//                } else if (sum < array[i]) {
+//                    startIdx++;
+//                } else {
+//                    endIdx--;
+//                }
+//            }
+//        }
+//
+//        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+//        bw.write(goodNumCount + "");
+//
+//        bw.flush();
+//        bw.close();
+//    }
+}
